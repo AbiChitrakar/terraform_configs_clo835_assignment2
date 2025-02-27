@@ -1,4 +1,6 @@
 .terraform
-clo835-a2.*
+clo835-a2
+clo835-a2.pub
 .terraform.lock.hcl
 *.tfstate
+*.tfstate.*
