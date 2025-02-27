@@ -1,7 +1,11 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 terraform {
-  backend "s3" {
-    bucket = "clo835-a2"
-    key    = "Terraform/terraform.tfstate"
-    region = "us-east-1"
-  }
+  required_version = ">= 0.12.0"
+}
+
+data "aws_vpc" "default" {
+  default = true
 }
