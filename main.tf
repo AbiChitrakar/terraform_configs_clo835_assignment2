@@ -5,24 +5,20 @@ provider "aws" {
 terraform {
   required_version = ">= 0.12.0"
 }
-# Data source for availability zones in us-east-1
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
 
 module "network" {
-  source       = "./modules/Network"
-  cidr_block   = var.cidr_block
-  vpc_name     = var.vpc_name
-  subnet_cidrs = var.subnet_cidrs
+  source             = "./modules/Network"
+  vpc_cidr           = var.vpc_cidr
+  public_subnet_cidr = var.public_subnet_cidr
 }
 
 module "ec2" {
-  source        = "./modules/EC2"
-  region        = var.region
-  subnet_ids    = module.network.subnet_ids
-  ami           = var.ami
-  instance_type = var.instance_type
-  instance_name = var.instance_name
+  source            = "./modules/EC2"
+  vpc_id            = module.network.vpc_id
+  subnet_id         = module.network.public_subnet_id
+  instance_type     = var.instance_type
+  key_name          = var.key_name
+  security_group_id = module.network.ssh_security_group_id
+  depends_on        = [module.network] # Ensures EC2 runs after Network
+
 }

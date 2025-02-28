@@ -1,37 +1,24 @@
-variable "region" {
-  description = "The AWS region to deploy resources in"
-  type        = string
-}
-variable "cidr_block" {
-  description = "The CIDR block for the VPC"
-  type        = string
+variable "aws_region" {
+  description = "The AWS region to create resources in"
+  default     = "us-east-1"
 }
 
-variable "subnet_cidrs" {
-  description = "A list of CIDR blocks for the subnets"
-  type        = list(string)
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  default     = "10.0.0.0/16"
 }
 
-variable "vpc_name" {
-  description = "The name of the VPC"
-  type        = string
-}
-
-variable "ami" {
-  description = "The AMI ID to use for the EC2 instance"
-  type        = string
+variable "public_subnet_cidr" {
+  description = "CIDR block for the public subnet"
+  default     = "10.0.1.0/24"
 }
 
 variable "instance_type" {
-  description = "The type of instance to create"
-  type        = string
+  description = "Type of EC2 instance to launch"
+  default     = "t3.micro"
 }
 
-variable "instance_name" {
-  description = "The name to assign to the EC2 instance"
-  type        = string
-}
-variable "subnet_ids" {
-  description = "A list of subnet IDs"
-  type        = list(string)
+variable "key_name" {
+  description = "Name of the SSH key pair to use"
+  default     = "clo835-a2"
 }

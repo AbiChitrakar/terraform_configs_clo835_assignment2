@@ -1,24 +1,20 @@
-variable "ami" {
-  description = "The AMI ID to use for the EC2 instance"
+variable "vpc_id" {
+  description = "The ID of the VPC"
+}
+
+variable "subnet_id" {
+  description = "The ID of the subnet"
   type        = string
 }
 
 variable "instance_type" {
-  description = "The type of instance to create"
-  type        = string
+  description = "Type of EC2 instance to launch"
 }
 
-
-variable "instance_name" {
-  description = "The name to assign to the EC2 instance"
-  type        = string
+variable "key_name" {
+  description = "Name of the SSH key pair to use"
 }
 
-variable "region" {
-  description = "The AWS region to deploy resources in"
-  type        = string
-}
-variable "subnet_cidrs" {
-  description = "A list of CIDR blocks for the subnets"
-  type        = list(string)
+variable "security_group_id" {
+  description = "The ID of the security group to associate with the EC2 instance"
 }
