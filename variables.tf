@@ -15,7 +15,7 @@ variable "public_subnet_cidr" {
 
 variable "instance_type" {
   description = "Type of EC2 instance to launch"
-  default     = "t3.micro"
+  default     = "t3.medium"
 }
 
 variable "key_name" {
